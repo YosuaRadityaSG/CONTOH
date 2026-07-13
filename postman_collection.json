@@ -1,0 +1,121 @@
+{
+  "info": {
+    "_postman_id": "8f6f8f3a-7f6d-4b7d-9f08-5ff4a6f7d101",
+    "name": "Telegram Bot Backend - Gemini",
+    "description": "Collection untuk menguji backend bot Telegram yang meneruskan pesan ke Gemini dan membalas ke Telegram.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["health"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Root Status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/",
+          "host": ["{{baseUrl}}"],
+          "path": []
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Gemini Ask",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"prompt\": \"Jelaskan bumi dalam 1 kalimat\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/gemini/ask",
+          "host": ["{{baseUrl}}"],
+          "path": ["gemini", "ask"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Wikipedia Summary Earth",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/wikipedia/summary/Earth",
+          "host": ["{{baseUrl}}"],
+          "path": ["wikipedia", "summary", "Earth"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Telegram Webhook Gemini Text",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"update_id\": 100000001,\n  \"message\": {\n    \"message_id\": 1,\n    \"from\": {\n      \"id\": 123456789,\n      \"is_bot\": false,\n      \"first_name\": \"Victoria\",\n      \"username\": \"victoriauser\",\n      \"language_code\": \"id\"\n    },\n    \"chat\": {\n      \"id\": 123456789,\n      \"first_name\": \"Victoria\",\n      \"username\": \"victoriauser\",\n      \"type\": \"private\"\n    },\n    \"date\": 1710000000,\n    \"text\": \"Halo, bantu jawab pertanyaan ini dengan singkat\"\n  }\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/telegram/webhook",
+          "host": ["{{baseUrl}}"],
+          "path": ["telegram", "webhook"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Telegram Webhook Wikipedia Command",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"update_id\": 100000002,\n  \"message\": {\n    \"message_id\": 2,\n    \"from\": {\n      \"id\": 123456789,\n      \"is_bot\": false,\n      \"first_name\": \"Victoria\",\n      \"username\": \"victoriauser\",\n      \"language_code\": \"id\"\n    },\n    \"chat\": {\n      \"id\": 123456789,\n      \"first_name\": \"Victoria\",\n      \"username\": \"victoriauser\",\n      \"type\": \"private\"\n    },\n    \"date\": 1710000001,\n    \"text\": \"/wiki Earth\"\n  }\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/telegram/webhook",
+          "host": ["{{baseUrl}}"],
+          "path": ["telegram", "webhook"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    }
+  ]
+}
